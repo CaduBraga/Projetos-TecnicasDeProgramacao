@@ -47,7 +47,17 @@ public class Editar {
         System.out.print("Digite a nova quantidade: ");
         int novaQuantidade = input.nextInt();
         input.nextLine();
+
+        int quantidadeAntiga = livro.getQuantidade();
+        int diferenca = novaQuantidade - quantidadeAntiga;
+
         livro.setQuantidade(novaQuantidade);
+        if (diferenca > 0) {
+            Livro.adicionarLivros(diferenca);
+        } else if (diferenca < 0) {
+            Livro.removerLivros(-diferenca);
+        }
         System.out.println("Quantidade atualizada com sucesso!");
+        System.out.println("Total de livros na biblioteca: " + Livro.getTotalLivros());
     }
 }

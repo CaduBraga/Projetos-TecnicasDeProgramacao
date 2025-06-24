@@ -63,15 +63,12 @@ public class Interface {
         int quantidade = input.nextInt();
         input.nextLine();
 
-        Livro livro = new Livro();
-        livro.setNome(nome);
-        livro.setAutor(autor);
-        livro.setGenero(genero);
-        livro.setEditora(editora);
-        livro.setPaginas(paginas);
-        livro.setQuantidade(quantidade);
+        Livro.adicionarLivros(quantidade);
 
-        System.out.println("Livro '" + livro.getNome() + "' cadastrado com sucesso!");
+        Livro livro = new Livro(nome, autor, genero, editora, paginas, quantidade);
+
+        System.out.println("Livro '" + nome + "' cadastrado com sucesso!");
+        System.out.println("Total de livros na biblioteca: " + Livro.getTotalLivros());
 
         return livro;
     }
@@ -83,7 +80,7 @@ public class Interface {
         } else {
             System.out.println("Livros disponíveis:");
             for (int i = 0; i < estoqueLivro.size(); i++) {
-                System.out.println((i + 1) + " - " + estoqueLivro.get(i).getNome());
+                System.out.println((i + 1) + " - " + estoqueLivro.get(i).getNome() + " (Quantidade: " + estoqueLivro.get(i).getQuantidade() + ")");
             }
 
             System.out.println("Digite o número do livro para ver os detalhes:");
@@ -100,7 +97,8 @@ public class Interface {
                 System.out.println("Gênero: " + livroEscolhido.getGenero());
                 System.out.println("Editora: " + livroEscolhido.getEditora());
                 System.out.println("Quantidade de páginas: " + livroEscolhido.getPaginas());
-                System.out.println("Quantidade: " + livroEscolhido.getQuantidade());
+                System.out.println("Quantidade em estoque: " + livroEscolhido.getQuantidade());
+                System.out.println("Total de livros na biblioteca: " + livroEscolhido.getTotalLivros());
             } else {
                 System.out.println("Opção inválida. Escolha um número entre 1 e " + estoqueLivro.size() + ".");
             }
@@ -114,24 +112,42 @@ public class Interface {
         }
         System.out.println("Livros disponíveis:");
         for (int i = 0; i < estoqueLivro.size(); i++) {
-            System.out.println((i + 1) + " - " + estoqueLivro.get(i).getNome());
+            System.out.println((i + 1) + " - " + estoqueLivro.get(i).getNome() + " (Quantidade: " + estoqueLivro.get(i).getQuantidade() + ")");
         }
-
         System.out.println("Digite o número do livro que deseja remover: ");
         System.out.print("> ");
         int escolha = input.nextInt();
         input.nextLine();
         System.out.println("--------------------------");
+
         if (escolha > 0 && escolha <= estoqueLivro.size()) {
-            Livro removida = estoqueLivro.remove(escolha - 1);
-            System.out.println("Livro '" + removida.getNome() + "' removido com sucesso!");
+            Livro selecionado = estoqueLivro.get(escolha - 1);
+            System.out.println("Estão disponíveis " + selecionado.getQuantidade() + " unidades do livro '" + selecionado.getNome() + "'. Quantas você deseja remover?");
+            System.out.print("> ");
+            int quantidadeRemovida = input.nextInt();
+            input.nextLine();
+
+            if (quantidadeRemovida > 0 && quantidadeRemovida <= selecionado.getQuantidade()) {
+                selecionado.setQuantidade(selecionado.getQuantidade() - quantidadeRemovida);
+                Livro.removerLivros(quantidadeRemovida);
+
+                System.out.println("Foram removidas " + quantidadeRemovida + " unidades do livro '" + selecionado.getNome() + "'.");
+                System.out.println("Quantidade restante deste livro: " + selecionado.getQuantidade());
+                System.out.println("Total de livros na biblioteca: " + Livro.getTotalLivros());
+
+                if (selecionado.getQuantidade() == 0) {
+                    estoqueLivro.remove(escolha - 1);
+                    System.out.println("Todos os exemplares deste livro foram removidos. Livro retirado do estoque.");
+                }
+            } else {
+                System.out.println("Quantidade inválida para remoção.");
+            }
         } else {
             System.out.println("Opção inválida. Escolha um número entre 1 e " + estoqueLivro.size() + ".");
         }
     }
 
     public void editar(List<Livro> estoqueLivro) {
-
         if (estoqueLivro.isEmpty()) {
             System.out.println("O estoque de livros está vazio.");
             return;

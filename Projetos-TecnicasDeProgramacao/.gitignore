@@ -1,0 +1,86 @@
+# Arquivos compilados Java
+*.class
+
+# Arquivos de build
+build/
+target/
+out/
+bin/
+
+# Arquivos de IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.settings/
+.project
+.classpath
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Arquivos temporários
+*.tmp
+*.temp
+*.log
+*.bak
+*.swp
+*.swo
+
+# Arquivos de configuração local
+*.properties.local
+*.config.local
+
+# Arquivos de backup
+*.backup
+*.old
+
+# Arquivos de cache
+.cache/
+*.cache
+
+# Arquivos de dependências
+node_modules/
+vendor/
+
+# Arquivos de documentação gerados
+docs/
+javadoc/
+
+# Arquivos de teste
+test-output/
+reports/
+
+# Arquivos de configuração do Maven/Gradle
+.mvn/
+gradle/
+gradlew
+gradlew.bat
+mvnw
+mvnw.cmd
+
+# Arquivos de banco de dados
+*.db
+*.sqlite
+*.sqlite3
+
+# Arquivos de configuração de ambiente
+.env
+.env.local
+.env.production
+
+# Arquivos de log
+logs/
+*.log
+
+# Arquivos de compressão
+*.zip
+*.rar
+*.7z
+*.tar.gz
+
+# Arquivos de backup do Windows
+*.lnk 

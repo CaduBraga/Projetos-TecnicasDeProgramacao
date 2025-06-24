@@ -2,7 +2,6 @@ package br.com.appBiblioteca.model;
 
 import java.util.Date;
 
-
 public class Livro {
     private String nome;
     private String autor;
@@ -10,6 +9,7 @@ public class Livro {
     private String editora;
     private int paginas;
     private int quantidade;
+    private static int totalLivros = 0;
 
     public Livro() {
         this.nome = "";
@@ -20,13 +20,13 @@ public class Livro {
         this.quantidade = 0;
     }
 
-    public Livro(String nome, double autor, String genero, String editora, int paginas, int quantidade) {
-        this.nome = "";
-        this.autor = "";
-        this.genero = "";
-        this.editora = "";
-        this.paginas = 0;
-        this.quantidade = 0;
+    public Livro(String nome, String autor, String genero, String editora, int paginas, int quantidade) {
+        this.nome = nome;
+        this.autor = autor;
+        this.genero = genero;
+        this.editora = editora;
+        this.paginas = paginas;
+        this.quantidade = quantidade;
     }
 
     public String getNome() {
@@ -75,5 +75,25 @@ public class Livro {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public static int getTotalLivros() {
+        return totalLivros;
+    }
+
+    public static void setTotalLivros(int totalLivros) {
+        Livro.totalLivros = totalLivros;
+    }
+
+    public static void adicionarLivros(int quantidade) {
+        totalLivros += quantidade;
+    }
+
+    public static void removerLivros(int quantidade) {
+        totalLivros -= quantidade;
+    }
+
+    public static void removerLivroEspecifico(int quantidade) {
+        quantidade -= quantidade;
     }
 }
