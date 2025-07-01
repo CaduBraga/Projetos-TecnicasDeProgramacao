@@ -29,7 +29,7 @@ public class Estoque {
     public void gerenciarEstoque() {
         int escolhaInicial = 0;
         CarrinhoCompras carrinho = new CarrinhoCompras();
-        while (escolhaInicial != 6) {
+        while (escolhaInicial != 7) {
             escolhaInicial = tela.menuPrincipal();
             switch (escolhaInicial) {
                 case 1:
@@ -49,10 +49,14 @@ public class Estoque {
                     carrinho.gerenciarCarrinho(estoqueFilme);
                     break;
                 case 6:
+                    br.com.appFilmes.view.Relatorio relatorio = new br.com.appFilmes.view.Relatorio();
+                    relatorio.relatorioFilmes(estoqueFilme);
+                    break;
+                case 7:
                     tela.encerrar();
                     break;
                 default:
-                    System.out.println("Opção inválida. Escolha um número entre 1 e 6.");
+                    System.out.println("Opção inválida. Escolha um número entre 1 e 7.");
             }
         }
     }
