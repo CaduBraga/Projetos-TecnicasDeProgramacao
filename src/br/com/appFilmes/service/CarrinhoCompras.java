@@ -1,8 +1,8 @@
 package br.com.appFilmes.service;
 
+import br.com.appFilmes.model.Filme;
 import java.util.ArrayList;
 import java.util.List;
-import br.com.appFilmes.model.Filme;
 
 public class CarrinhoCompras {
     private List<Filme> carrinhoFilmes;
@@ -81,5 +81,32 @@ public class CarrinhoCompras {
 
     public List<Integer> getCarrinhoQuantidades() {
         return carrinhoQuantidades;
+    }
+
+    public void gerenciarCarrinho(List<Filme> estoqueFilmes) {
+        br.com.appFilmes.view.InterfaceCompra tela = new br.com.appFilmes.view.InterfaceCompra();
+        int escolhaCarrinho = 0;
+        while (escolhaCarrinho != 5) {
+            escolhaCarrinho = tela.menuCarrinho();
+            switch (escolhaCarrinho) {
+                case 1:
+                    tela.adicionarAoCarrinho(estoqueFilmes, this);
+                    break;
+                case 2:
+                    tela.removerDoCarrinho(this);
+                    break;
+                case 3:
+                    tela.mostrarCarrinho(this);
+                    break;
+                case 4:
+                    tela.finalizarCompra(this);
+                    escolhaCarrinho = 5;
+                    break;
+                case 5:
+                    break;
+                default:
+                    System.out.println("Opção inválida. Escolha um número entre 1 e 5.");
+            }
+        }
     }
 }

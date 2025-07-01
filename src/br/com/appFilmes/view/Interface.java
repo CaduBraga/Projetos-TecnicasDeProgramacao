@@ -1,10 +1,8 @@
 package br.com.appFilmes.view;
 
-import java.util.Date;
+import br.com.appFilmes.model.Filme;
 import java.util.List;
 import java.util.Scanner;
-
-import br.com.appFilmes.model.Filme;
 
 public class Interface {
     Scanner input;
@@ -32,13 +30,17 @@ public class Interface {
         System.out.println("2 - Ver filmes");
         System.out.println("3 - Remover filmes");
         System.out.println("4 - Editar filmes");
-        System.out.println("5 - Sair do programa");
+        System.out.println("5 - Iniciar compras");
+        System.out.println("6 - Sair do programa");
         System.out.println("Digite sua escolha abaixo:");
         System.out.print("> ");
         int escolha = input.nextInt();
         input.nextLine();
         System.out.println("--------------------------");
-
+        if (escolha < 1 || escolha > 6) {
+            System.out.println("\nOpção inválida, escolha um número de 1 a 6.");
+            return menuPrincipal();
+        }
         return escolha;
     }
 
@@ -64,9 +66,13 @@ public class Interface {
         int quantidade = input.nextInt();
         input.nextLine();
 
+        System.out.print("Digite o preço do filme: ");
+        double preco = input.nextDouble();
+        input.nextLine();
+
         Filme.adicionarFilmes(quantidade);
 
-        Filme filme = new Filme(titulo, genero, duracao, anoLancamento, diretor, quantidade);
+        Filme filme = new Filme(titulo, genero, duracao, anoLancamento, diretor, quantidade, preco);
 
         System.out.println("Filme '" + titulo + "' cadastrado com sucesso!");
         System.out.println("Total de filmes na locadora: " + Filme.getTotalFilmes());

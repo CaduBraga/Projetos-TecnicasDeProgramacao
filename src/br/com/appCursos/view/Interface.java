@@ -1,10 +1,8 @@
 package br.com.appCursos.view;
 
-import java.util.Date;
+import br.com.appCursos.model.Curso;
 import java.util.List;
 import java.util.Scanner;
-
-import br.com.appCursos.model.Curso;
 
 public class Interface {
     Scanner input;
@@ -32,13 +30,17 @@ public class Interface {
         System.out.println("2 - Ver cursos");
         System.out.println("3 - Remover cursos");
         System.out.println("4 - Editar cursos");
-        System.out.println("5 - Sair do programa");
+        System.out.println("5 - Iniciar compras");
+        System.out.println("6 - Sair do programa");
         System.out.println("Digite sua escolha abaixo:");
         System.out.print("> ");
         int escolha = input.nextInt();
         input.nextLine();
         System.out.println("--------------------------");
-
+        if (escolha < 1 || escolha > 6) {
+            System.out.println("\nOpção inválida, escolha um número de 1 a 6.");
+            return menuPrincipal();
+        }
         return escolha;
     }
 
@@ -211,7 +213,8 @@ public class Interface {
         System.out.println("Cursos disponíveis:");
         for (int i = 0; i < estoque.size(); i++) {
             Curso c = estoque.get(i);
-            System.out.println((i+1) + " - " + c.getNome() + " (R$ " + c.getPreco() + ", Vagas: " + c.getVagas() + ")");
+            System.out
+                    .println((i + 1) + " - " + c.getNome() + " (R$ " + c.getPreco() + ", Vagas: " + c.getVagas() + ")");
         }
         System.out.print("Escolha o curso: ");
         int idx = input.nextInt() - 1;
@@ -230,4 +233,5 @@ public class Interface {
         }
         curso.setVagas(curso.getVagas() - qtd);
         carrinho.adicionarCurso(curso, qtd);
+    }
 }

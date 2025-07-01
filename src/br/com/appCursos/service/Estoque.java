@@ -1,10 +1,9 @@
 package br.com.appCursos.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.appCursos.model.Curso;
 import br.com.appCursos.view.Interface;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Estoque {
     List<Curso> estoqueCurso;
@@ -29,33 +28,32 @@ public class Estoque {
 
     public void gerenciarEstoque() {
         int escolhaInicial = 0;
-        while (escolhaInicial != 5) {
+        CarrinhoCompras carrinho = new CarrinhoCompras();
+        while (escolhaInicial != 6) {
             escolhaInicial = tela.menuPrincipal();
             switch (escolhaInicial) {
-
                 case 1:
                     Curso curso = tela.cadastrar();
                     estoqueCurso.add(curso);
                     break;
-
                 case 2:
                     tela.detalhar(estoqueCurso);
                     break;
-
                 case 3:
                     tela.remover(estoqueCurso);
                     break;
-
                 case 4:
                     tela.editar(estoqueCurso);
                     break;
-
                 case 5:
+                    carrinho.gerenciarCarrinho(estoqueCurso);
+                    break;
+                case 6:
                     tela.encerrar();
                     break;
                 default:
-                    System.out.println("Opção inválida. Escolha um número entre 1 e 5.");
+                    System.out.println("Opção inválida. Escolha um número entre 1 e 6.");
             }
         }
     }
-} 
+}

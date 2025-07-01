@@ -1,10 +1,8 @@
 package br.com.appSuplementos.view;
 
-import java.util.Date;
+import br.com.appSuplementos.model.Suplemento;
 import java.util.List;
 import java.util.Scanner;
-
-import br.com.appSuplementos.model.Suplemento;
 
 public class Interface {
     Scanner input;
@@ -32,13 +30,36 @@ public class Interface {
         System.out.println("2 - Ver suplementos");
         System.out.println("3 - Remover suplementos");
         System.out.println("4 - Editar suplementos");
-        System.out.println("5 - Sair do programa");
+        System.out.println("5 - Iniciar compras");
+        System.out.println("6 - Sair do programa");
         System.out.println("Digite sua escolha abaixo:");
         System.out.print("> ");
         int escolha = input.nextInt();
         input.nextLine();
         System.out.println("--------------------------");
+        if (escolha < 1 || escolha > 6) {
+            System.out.println("\nOpção inválida, escolha um número de 1 a 6.");
+            return menuPrincipal();
+        }
+        return escolha;
+    }
 
+    public int menuCarrinho() {
+        System.out.println("+--------------------------------------------------------------+");
+        System.out.println("|                    CARRINHO DE COMPRAS                       |");
+        System.out.println("+--------------------------------------------------------------+");
+        System.out.println("|  O que você deseja fazer?                                    |");
+        System.out.println("|                                                              |");
+        System.out.println("|  1 - Adicionar suplementos ao carrinho                       |");
+        System.out.println("|  2 - Remover suplemento do carrinho                          |");
+        System.out.println("|  3 - Ver carrinho                                            |");
+        System.out.println("|  4 - Finalizar compra                                        |");
+        System.out.println("|  5 - Voltar ao menu principal                                |");
+        System.out.println("+--------------------------------------------------------------+");
+        System.out.print("  Digite sua escolha: ");
+        int escolha = input.nextInt();
+        input.nextLine();
+        System.out.println();
         return escolha;
     }
 
@@ -74,7 +95,8 @@ public class Interface {
         } else {
             System.out.println("Suplementos disponíveis:");
             for (int i = 0; i < estoqueSuplemento.size(); i++) {
-                System.out.println((i + 1) + " - " + estoqueSuplemento.get(i).getNome() + " (Quantidade: " + estoqueSuplemento.get(i).getQuantidade() + ")");
+                System.out.println((i + 1) + " - " + estoqueSuplemento.get(i).getNome() + " (Quantidade: "
+                        + estoqueSuplemento.get(i).getQuantidade() + ")");
             }
 
             System.out.println("Digite o número do suplemento para ver os detalhes:");
@@ -104,7 +126,8 @@ public class Interface {
         }
         System.out.println("Suplementos disponíveis:");
         for (int i = 0; i < estoqueSuplemento.size(); i++) {
-            System.out.println((i + 1) + " - " + estoqueSuplemento.get(i).getNome() + " (Quantidade: " + estoqueSuplemento.get(i).getQuantidade() + ")");
+            System.out.println((i + 1) + " - " + estoqueSuplemento.get(i).getNome() + " (Quantidade: "
+                    + estoqueSuplemento.get(i).getQuantidade() + ")");
         }
         System.out.println("Digite o número do suplemento que deseja remover: ");
         System.out.print("> ");
@@ -114,7 +137,8 @@ public class Interface {
 
         if (escolha > 0 && escolha <= estoqueSuplemento.size()) {
             Suplemento selecionado = estoqueSuplemento.get(escolha - 1);
-            System.out.println("Estão disponíveis " + selecionado.getQuantidade() + " unidades do suplemento '" + selecionado.getNome() + "'. Quantas você deseja remover?");
+            System.out.println("Estão disponíveis " + selecionado.getQuantidade() + " unidades do suplemento '"
+                    + selecionado.getNome() + "'. Quantas você deseja remover?");
             System.out.print("> ");
             int quantidadeRemovida = input.nextInt();
             input.nextLine();
@@ -123,13 +147,15 @@ public class Interface {
                 selecionado.setQuantidade(selecionado.getQuantidade() - quantidadeRemovida);
                 Suplemento.removerSuplementos(quantidadeRemovida);
 
-                System.out.println("Foram removidas " + quantidadeRemovida + " unidades do suplemento '" + selecionado.getNome() + "'.");
+                System.out.println("Foram removidas " + quantidadeRemovida + " unidades do suplemento '"
+                        + selecionado.getNome() + "'.");
                 System.out.println("Quantidade restante deste suplemento: " + selecionado.getQuantidade());
                 System.out.println("Total de suplementos na loja: " + Suplemento.getTotalSuplementos());
 
                 if (selecionado.getQuantidade() == 0) {
                     estoqueSuplemento.remove(escolha - 1);
-                    System.out.println("Todos os exemplares deste suplemento foram removidos. Suplemento retirado do estoque.");
+                    System.out.println(
+                            "Todos os exemplares deste suplemento foram removidos. Suplemento retirado do estoque.");
                 }
             } else {
                 System.out.println("Quantidade inválida para remoção.");
@@ -190,4 +216,4 @@ public class Interface {
         System.out.println("Obrigado por usar o App Suplementos!");
         System.out.println("Programa encerrado.");
     }
-} 
+}

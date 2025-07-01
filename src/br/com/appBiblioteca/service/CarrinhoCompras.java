@@ -1,8 +1,8 @@
 package br.com.appBiblioteca.service;
 
+import br.com.appBiblioteca.model.Livro;
 import java.util.ArrayList;
 import java.util.List;
-import br.com.appBiblioteca.model.Livro;
 
 public class CarrinhoCompras {
     private List<Livro> carrinhoLivros;
@@ -81,5 +81,32 @@ public class CarrinhoCompras {
 
     public List<Integer> getCarrinhoQuantidades() {
         return carrinhoQuantidades;
+    }
+
+    public void gerenciarCarrinho(List<Livro> estoqueLivros) {
+        br.com.appBiblioteca.view.InterfaceCompra tela = new br.com.appBiblioteca.view.InterfaceCompra();
+        int escolhaCarrinho = 0;
+        while (escolhaCarrinho != 5) {
+            escolhaCarrinho = tela.menuCarrinho();
+            switch (escolhaCarrinho) {
+                case 1:
+                    tela.adicionarAoCarrinho(estoqueLivros, this);
+                    break;
+                case 2:
+                    tela.removerDoCarrinho(this);
+                    break;
+                case 3:
+                    tela.mostrarCarrinho(this);
+                    break;
+                case 4:
+                    tela.finalizarCompra(this);
+                    escolhaCarrinho = 5;
+                    break;
+                case 5:
+                    break;
+                default:
+                    System.out.println("Opção inválida. Escolha um número entre 1 e 5.");
+            }
+        }
     }
 }

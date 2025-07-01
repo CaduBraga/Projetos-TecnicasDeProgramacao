@@ -1,10 +1,9 @@
 package br.com.appFilmes.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.appFilmes.model.Filme;
 import br.com.appFilmes.view.Interface;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Estoque {
     List<Filme> estoqueFilme;
@@ -29,33 +28,32 @@ public class Estoque {
 
     public void gerenciarEstoque() {
         int escolhaInicial = 0;
-        while (escolhaInicial != 5) {
+        CarrinhoCompras carrinho = new CarrinhoCompras();
+        while (escolhaInicial != 6) {
             escolhaInicial = tela.menuPrincipal();
             switch (escolhaInicial) {
-
                 case 1:
                     Filme filme = tela.cadastrar();
                     estoqueFilme.add(filme);
                     break;
-
                 case 2:
                     tela.detalhar(estoqueFilme);
                     break;
-
                 case 3:
                     tela.remover(estoqueFilme);
                     break;
-
                 case 4:
                     tela.editar(estoqueFilme);
                     break;
-
                 case 5:
+                    carrinho.gerenciarCarrinho(estoqueFilme);
+                    break;
+                case 6:
                     tela.encerrar();
                     break;
                 default:
-                    System.out.println("Opção inválida. Escolha um número entre 1 e 5.");
+                    System.out.println("Opção inválida. Escolha um número entre 1 e 6.");
             }
         }
     }
-} 
+}

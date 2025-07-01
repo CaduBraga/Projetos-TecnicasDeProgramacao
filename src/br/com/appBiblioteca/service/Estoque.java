@@ -1,10 +1,9 @@
 package br.com.appBiblioteca.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.appBiblioteca.model.Livro;
 import br.com.appBiblioteca.view.Interface;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Estoque {
     List<Livro> estoqueLivro;
@@ -29,32 +28,31 @@ public class Estoque {
 
     public void gerenciarEstoque() {
         int escolhaInicial = 0;
-        while (escolhaInicial != 5) {
+        CarrinhoCompras carrinho = new CarrinhoCompras();
+        while (escolhaInicial != 6) {
             escolhaInicial = tela.menuPrincipal();
             switch (escolhaInicial) {
-
                 case 1:
                     Livro livro = tela.cadastrar();
                     estoqueLivro.add(livro);
                     break;
-
                 case 2:
                     tela.detalhar(estoqueLivro);
                     break;
-
                 case 3:
                     tela.remover(estoqueLivro);
                     break;
-
                 case 4:
                     tela.editar(estoqueLivro);
                     break;
-
                 case 5:
+                    carrinho.gerenciarCarrinho(estoqueLivro);
+                    break;
+                case 6:
                     tela.encerrar();
                     break;
                 default:
-                    System.out.println("Opção inválida. Escolha um número entre 1 e 5.");
+                    System.out.println("Opção inválida. Escolha um número entre 1 e 6.");
             }
         }
     }
