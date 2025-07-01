@@ -1,132 +1,116 @@
 # 📚 Projetos de Técnicas de Programação
 
-Este repositório contém uma coleção de projetos Java que demonstram diferentes técnicas de programação, todos organizados em uma estrutura compartilhada.
+Este repositório reúne cinco sistemas Java independentes, cada um simulando um domínio diferente (Biblioteca, Frutaria, Filmes, Cursos e Suplementos), todos organizados em uma estrutura modular e padronizada.
 
 ## 🏗️ Estrutura do Projeto
 
 ```
 Projetos-TecnicasDeProgramacao/
-├── src/
-│   └── br/
-│       └── com/
-│           ├── appBiblioteca/     # Sistema de Biblioteca
-│           ├── appFrutaria/       # Sistema de Frutaria
-│           ├── appFilmes/         # Sistema de Filmes
-│           ├── appCursos/         # Sistema de Cursos
-│           └── appSuplementos/    # Sistema de Suplementos
-├── ProjetoBiblioteca/             # Projeto original (mantido para referência)
-├── ProjetoFrutaria/               # Projeto original
-├── ProjetoFilmes/                 # Projeto original
-├── ProjetoCursos/                 # Projeto original
-├── ProjetoSuplementos/            # Projeto original
-└── README.md
+├── compilar.bat
+├── README.md
+└── src/
+    └── br/
+        └── com/
+            ├── appBiblioteca/
+            ├── appFrutaria/
+            ├── appFilmes/
+            ├── appCursos/
+            └── appSuplementos/
 ```
+
+Cada subpasta representa um sistema independente, com sua própria estrutura MVC (Model-View-Controller/Service).
 
 ## 📦 Estrutura de Cada Aplicação
 
-Cada aplicação segue o padrão MVC (Model-View-Controller) com a seguinte estrutura:
-
 ```
 app[Nome]/
-├── [AppNome].java          # Classe principal
+├── App[Nome].java           # Classe principal (main)
 ├── model/
-│   └── [Entidade].java     # Classe de modelo
+│   └── [Entidades].java     # Classes de domínio (ex: Livro, Produto, Fruta, etc)
+│   └── verduras/            # (Frutaria) Subpacote para tipos de verduras
 ├── service/
-│   └── Estoque.java        # Lógica de negócio
+│   ├── Estoque.java         # Lógica de estoque e menu principal
+│   └── CarrinhoCompras.java # Lógica de compras
 └── view/
-    ├── Interface.java       # Interface do usuário
-    └── Editar.java         # Métodos de edição
+    ├── Interface.java       # Interface de interação principal
+    ├── InterfaceCompra.java # Interface de interação do carrinho
+    ├── Editar.java          # Métodos de edição de entidades
+    ├── Menus.java           # Menus auxiliares
+    └── Relatorio.java       # Relatórios do sistema
 ```
 
 ## 🎯 Aplicações Disponíveis
 
 ### 📚 App Biblioteca
-- **Entidade**: `Livro`
-- **Atributos**: nome, autor, gênero, editora, páginas, quantidade
-- **Funcionalidades**: Cadastrar, visualizar, remover e editar livros
+- **Entidade principal:** `Livro`
+- **Atributos:** nome, autor, gênero, editora, páginas, quantidade, preço
+- **Funcionalidades:** Cadastro, visualização, remoção, edição, compras, relatório detalhado
 
 ### 🍎 App Frutaria
-- **Entidade**: `Fruta`
-- **Atributos**: nome, preco, quantidade
-- **Funcionalidades**: Cadastrar, visualizar, remover e editar frutas
+- **Entidades:** `Produto` (base), `Fruta`, `Verdura` (com enum `TipoVerdura`)
+- **Atributos:** nome, preço, quantidade, peso (fruta), tipo (verdura)
+- **Funcionalidades:** Cadastro, visualização, remoção, edição, compras, relatório detalhado
 
 ### 🎬 App Filmes
-- **Entidade**: `Filme`
-- **Atributos**: título, gênero, duração, ano de lançamento, quantidade
-- **Funcionalidades**: Cadastrar, visualizar, remover e editar filmes
+- **Entidade principal:** `Filme`
+- **Atributos:** título, gênero, duração, ano de lançamento, diretor, quantidade, preço
+- **Funcionalidades:** Cadastro, visualização, remoção, edição, compras, relatório detalhado
 
 ### 🎓 App Cursos
-- **Entidade**: `Curso`
-- **Atributos**: nome, duração (horas), coordenador, nível, vagas
-- **Funcionalidades**: Cadastrar, visualizar, remover e editar cursos
+- **Entidade principal:** `Curso`
+- **Atributos:** nome, duração (horas), coordenador, nível, vagas, preço
+- **Funcionalidades:** Cadastro, visualização, remoção, edição, compras, relatório detalhado
 
 ### 💊 App Suplementos
-- **Entidade**: `Suplemento`
-- **Atributos**: nome, preço, quantidade, marca
-- **Funcionalidades**: Cadastrar, visualizar, remover e editar suplementos
+- **Entidade principal:** `Suplemento`
+- **Atributos:** nome, preço, quantidade, marca
+- **Funcionalidades:** Cadastro, visualização, remoção, edição, compras, relatório detalhado
 
-## 🚀 Como Executar
+## 🚀 Como Compilar e Executar
 
-### Compilação Individual
-Para compilar e executar cada aplicação individualmente:
+### Compilação automática (recomendada)
 
-```bash
-# Biblioteca
-javac -cp src src/br/com/appBiblioteca/*.java src/br/com/appBiblioteca/*/*.java
+Use o script incluso para compilar todos os sistemas de uma vez:
+
+```bat
+compilar.bat
+```
+
+Após a compilação, execute o sistema desejado:
+
+```bat
 java -cp src br.com.appBiblioteca.AppBiblioteca
-
-# Frutaria
-javac -cp src src/br/com/appFrutaria/*.java src/br/com/appFrutaria/*/*.java
 java -cp src br.com.appFrutaria.AppFrutaria
-
-# Filmes
-javac -cp src src/br/com/appFilmes/*.java src/br/com/appFilmes/*/*.java
 java -cp src br.com.appFilmes.AppFilmes
-
-# Cursos
-javac -cp src src/br/com/appCursos/*.java src/br/com/appCursos/*/*.java
 java -cp src br.com.appCursos.AppCursos
-
-# Suplementos
-javac -cp src src/br/com/appSuplementos/*.java src/br/com/appSuplementos/*/*.java
 java -cp src br.com.appSuplementos.AppSuplementos
 ```
 
-### Compilação Completa
-Para compilar todos os projetos de uma vez:
+### Compilação manual (exemplo para Biblioteca)
 
-```bash
-javac -cp src src/br/com/*/*.java src/br/com/*/*/*.java
+```bat
+javac -cp src src/br/com/appBiblioteca/AppBiblioteca.java src/br/com/appBiblioteca/model/Livro.java src/br/com/appBiblioteca/service/Estoque.java src/br/com/appBiblioteca/service/CarrinhoCompras.java src/br/com/appBiblioteca/view/Interface.java src/br/com/appBiblioteca/view/Editar.java src/br/com/appBiblioteca/view/Relatorio.java
+java -cp src br.com.appBiblioteca.AppBiblioteca
 ```
 
-## 🎨 Características dos Projetos
+## 📝 Funcionalidades Gerais
 
-### Padrões Utilizados
-- **MVC (Model-View-Controller)**: Separação clara entre dados, lógica e interface
-- **POO (Programação Orientada a Objetos)**: Encapsulamento, herança e polimorfismo
-- **Collections**: Uso de ArrayList para gerenciamento de dados
-- **Static Methods**: Controle de contadores globais
+- **Menu interativo:** Todas as aplicações possuem menus de fácil navegação pelo console.
+- **Relatórios:** Todos os sistemas (exceto Frutaria) possuem opção de relatório no menu principal.
+- **Carrinho de compras:** Simulação de compra/remoção de itens.
+- **Edição e remoção:** Edição e remoção de entidades com validação.
+- **Relatórios detalhados:** Estatísticas e ordenação dos itens por quantidade/vagas.
 
-### Funcionalidades Comuns
-- ✅ Cadastro de entidades
-- ✅ Visualização detalhada
-- ✅ Remoção com confirmação
-- ✅ Edição de atributos
-- ✅ Controle de estoque/quantidade
-- ✅ Interface de console interativa
-- ✅ Validação de entrada de dados
+## 🎨 Padrões e Técnicas
 
-### Funcionalidades Específicas
-- **Biblioteca**: Controle de páginas e editoras
-- **Frutaria**: Controle de cores e sabores
-- **Filmes**: Controle de duração e ano de lançamento
-- **Cursos**: Controle de vagas e coordenadores
-- **Suplementos**: Controle de preços e marcas
+- **MVC:** Separação entre dados, lógica e interface.
+- **POO:** Encapsulamento, herança (ex: Produto, Fruta, Verdura), polimorfismo.
+- **Coleções:** Uso de ArrayList para gerenciamento dinâmico.
+- **Métodos estáticos:** Controle de totais globais por entidade.
 
-## 📝 Notas Técnicas
+## 💡 Observações
 
-- **Linguagem**: Java
-- **Versão**: Compatível com Java 8+
-- **Estrutura**: Pacotes organizados por domínio
-- **Interface**: Console interativo
-- **Persistência**: Memória (ArrayList)
+- **Requisitos:** Java 8 ou superior.
+- **Persistência:** Todos os dados são mantidos apenas em memória (não há banco de dados).
+- **Execução:** Apenas via terminal/console.
+- **Estrutura modular:** Cada sistema é independente, mas compartilha padrões e estrutura.
