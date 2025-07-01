@@ -29,13 +29,13 @@ app[Nome]/
 │   └── [Entidades].java     # Classes de domínio (ex: Livro, Produto, Fruta, etc)
 │   └── verduras/            # (Frutaria) Subpacote para tipos de verduras
 ├── service/
-│   ├── Estoque.java         # Lógica de estoque e menu principal
-│   └── CarrinhoCompras.java # Lógica de compras
+│   ├── Estoque.java         # Lógica de estoque e regras de negócios
+│   └── CarrinhoCompras.java # Lógica do carrinho de compras
 └── view/
     ├── Interface.java       # Interface de interação principal
-    ├── InterfaceCompra.java # Interface de interação do carrinho
-    ├── Editar.java          # Métodos de edição de entidades
-    ├── Menus.java           # Menus auxiliares
+    ├── InterfaceCompra.java # Interface de interação do carrinho de compras
+    ├── Editar.java          # Métodos de edição
+    ├── Menus.java           # Menus que serão mostrados para o usuário
     └── Relatorio.java       # Relatórios do sistema
 ```
 
@@ -96,7 +96,7 @@ java -cp src br.com.appBiblioteca.AppBiblioteca
 ## 📝 Funcionalidades Gerais
 
 - **Menu interativo:** Todas as aplicações possuem menus de fácil navegação pelo console.
-- **Relatórios:** Todos os sistemas (exceto Frutaria) possuem opção de relatório no menu principal.
+- **Relatórios:** Todos os sistemas possuem opção de relatório no menu principal.
 - **Carrinho de compras:** Simulação de compra/remoção de itens.
 - **Edição e remoção:** Edição e remoção de entidades com validação.
 - **Relatórios detalhados:** Estatísticas e ordenação dos itens por quantidade/vagas.
@@ -113,4 +113,4 @@ java -cp src br.com.appBiblioteca.AppBiblioteca
 - **Requisitos:** Java 8 ou superior.
 - **Persistência:** Todos os dados são mantidos apenas em memória (não há banco de dados).
 - **Execução:** Apenas via terminal/console.
-- **Estrutura modular:** Cada sistema é independente, mas compartilha padrões e estrutura.
+- **Estrutura modular:** Cada sistema é independente, mas compartilha dos mesmos padrões e estrutura.
