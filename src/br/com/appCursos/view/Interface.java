@@ -31,14 +31,15 @@ public class Interface {
         System.out.println("3 - Remover cursos");
         System.out.println("4 - Editar cursos");
         System.out.println("5 - Iniciar compras");
-        System.out.println("6 - Sair do programa");
+        System.out.println("6 - Relatório de cursos");
+        System.out.println("7 - Sair do programa");
         System.out.println("Digite sua escolha abaixo:");
         System.out.print("> ");
         int escolha = input.nextInt();
         input.nextLine();
         System.out.println("--------------------------");
-        if (escolha < 1 || escolha > 6) {
-            System.out.println("\nOpção inválida, escolha um número de 1 a 6.");
+        if (escolha < 1 || escolha > 7) {
+            System.out.println("\nOpção inválida, escolha um número de 1 a 7.");
             return menuPrincipal();
         }
         return escolha;
