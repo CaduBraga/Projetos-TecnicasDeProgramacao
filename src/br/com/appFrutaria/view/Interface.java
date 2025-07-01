@@ -1,9 +1,9 @@
 package br.com.appFrutaria.view;
 
-import java.util.List;
-import java.util.Scanner;
 import br.com.appFrutaria.model.*;
 import br.com.appFrutaria.model.verduras.*;
+import java.util.List;
+import java.util.Scanner;
 
 public class Interface {
     Scanner input;
@@ -21,14 +21,7 @@ public class Interface {
     }
 
     public static void mensagemInicial() {
-        System.out.println("╔══════════════════════════════════════════════════════════════╗");
-        System.out.println("║                                                              ║");
-        System.out.println("║  🍎🥬 BEM-VINDO AO SISTEMA DE GESTÃO DA FRUTARIA 🥬🍎      ║");
-        System.out.println("║                                                              ║");
-        System.out.println("║  Sistema completo para gerenciamento de produtos,           ║");
-        System.out.println("║  estoque e vendas da sua frutaria!                          ║");
-        System.out.println("║                                                              ║");
-        System.out.println("╚══════════════════════════════════════════════════════════════╝");
+        System.out.println("=== BEM-VINDO AO SISTEMA DE GESTÃO DA FRUTARIA ===");
         System.out.println();
     }
 
@@ -60,18 +53,29 @@ public class Interface {
             int tipoVerduraId = input.nextInt();
             input.nextLine();
             TipoVerdura tipoVerdura;
-            if (tipoVerduraId == 1)
-                tipoVerdura = TipoVerdura.LEGUME;
-            else if (tipoVerduraId == 2)
-                tipoVerdura = TipoVerdura.TUBERCULO;
-            else if (tipoVerduraId == 3)
-                tipoVerdura = TipoVerdura.RAIZ;
-            else if (tipoVerduraId == 4)
-                tipoVerdura = TipoVerdura.CEREAL;
-            else if (tipoVerduraId == 5)
-                tipoVerdura = TipoVerdura.OLEAGINOSA;
-            else
-                tipoVerdura = TipoVerdura.CONDIMENTO;
+            switch (tipoVerduraId) {
+                case 1:
+                    tipoVerdura = TipoVerdura.LEGUME;
+                    break;
+                case 2:
+                    tipoVerdura = TipoVerdura.TUBERCULO;
+                    break;
+                case 3:
+                    tipoVerdura = TipoVerdura.RAIZ;
+                    break;
+                case 4:
+                    tipoVerdura = TipoVerdura.CEREAL;
+                    break;
+                case 5:
+                    tipoVerdura = TipoVerdura.OLEAGINOSA;
+                    break;
+                case 6:
+                    tipoVerdura = TipoVerdura.CONDIMENTO;
+                    break;
+                default:
+                    System.out.println("Opção inválida, escolha um número de 1 a 6 para o tipo de verdura.");
+                    return null;
+            }
             produto = new Verdura(tipoVerdura, 0);
             Verdura.adicionarVerduras(quantidade);
         }
@@ -153,20 +157,20 @@ public class Interface {
     }
 
     public void encerrar() {
-        System.out.println("╔══════════════════════════════════════════════════════════════╗");
-        System.out.println("║                    🚪 ENCERRANDO SISTEMA                     ║");
-        System.out.println("╠══════════════════════════════════════════════════════════════╣");
-        System.out.println("║  Salvando dados...                                          ║");
+        System.out.println("+--------------------------------------------------------------+");
+        System.out.println("|                                                              |");
+        System.out.println("|  ENCERRANDO O SISTEMA                                         |");
+        System.out.println("+--------------------------------------------------------------+");
+        System.out.println("|  Salvando dados...                                            |");
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("║  Sistema encerrado com sucesso!                             ║");
-        System.out.println("║  Obrigado por usar o Sistema de Gestão da Frutaria!        ║");
-        System.out.println("║  🍎🥬 Até a próxima! 🥬🍎                                   ║");
-        System.out.println("╚══════════════════════════════════════════════════════════════╝");
+        System.out.println("|  Sistema encerrado com sucesso!                             |");
+        System.out.println("|  Obrigado por usar o Sistema de Gestão da Frutaria!         |");
+        System.out.println("|  Até a próxima!                                             |");
+        System.out.println("+--------------------------------------------------------------+");
         System.exit(0);
     }
-
 }

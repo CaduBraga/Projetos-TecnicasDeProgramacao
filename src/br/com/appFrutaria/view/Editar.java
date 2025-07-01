@@ -1,9 +1,9 @@
 package br.com.appFrutaria.view;
 
-import java.util.List;
-import java.util.Scanner;
 import br.com.appFrutaria.model.*;
 import br.com.appFrutaria.model.verduras.*;
+import java.util.List;
+import java.util.Scanner;
 
 public class Editar {
     static Scanner input = new Scanner(System.in);

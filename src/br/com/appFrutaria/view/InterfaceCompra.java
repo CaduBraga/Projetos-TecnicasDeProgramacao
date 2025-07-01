@@ -1,9 +1,9 @@
 package br.com.appFrutaria.view;
 
-import java.util.List;
-import java.util.Scanner;
 import br.com.appFrutaria.model.Produto;
 import br.com.appFrutaria.service.CarrinhoCompras;
+import java.util.List;
+import java.util.Scanner;
 
 public class InterfaceCompra {
     Scanner input;
@@ -21,18 +21,17 @@ public class InterfaceCompra {
     }
 
     public int menuCarrinho() {
-        System.out.println("╔══════════════════════════════════════════════════════════════╗");
-        System.out.println("║                    🛒 CARRINHO DE COMPRAS                    ║");
-        System.out.println("╠══════════════════════════════════════════════════════════════╣");
-        System.out.println("║  O que você deseja fazer?                                   ║");
-        System.out.println("║                                                              ║");
-        System.out.println("║  1 ➤ Adicionar itens ao carrinho                           ║");
-        System.out.println("║  2 ➤ Remover produto do carrinho                           ║");
-        System.out.println("║  3 ➤ Ver carrinho                                          ║");
-        System.out.println("║  4 ➤ Finalizar compra                                      ║");
-        System.out.println("║  5 ➤ Voltar ao menu principal                              ║");
-        System.out.println("║                                                              ║");
-        System.out.println("╚══════════════════════════════════════════════════════════════╝");
+        System.out.println("+--------------------------------------------------------------+");
+        System.out.println("|                    CARRINHO DE COMPRAS                       |");
+        System.out.println("+--------------------------------------------------------------+");
+        System.out.println("|  O que você deseja fazer?                                    |");
+        System.out.println("|                                                              |");
+        System.out.println("|  1 - Adicionar itens ao carrinho                             |");
+        System.out.println("|  2 - Remover produto do carrinho                             |");
+        System.out.println("|  3 - Ver carrinho                                            |");
+        System.out.println("|  4 - Finalizar compra                                        |");
+        System.out.println("|  5 - Voltar ao menu principal                                |");
+        System.out.println("+--------------------------------------------------------------+");
         System.out.print("  Digite sua escolha: ");
         int escolha = input.nextInt();
         input.nextLine();
@@ -42,86 +41,107 @@ public class InterfaceCompra {
 
     public void adicionarAoCarrinho(List<Produto> estoqueProdutos, CarrinhoCompras carrinho) {
         if (estoqueProdutos.isEmpty()) {
-            System.out.println("╔══════════════════════════════════════════════════════════════╗");
-            System.out.println("║                    ⚠️  ESTOQUE VAZIO                         ║");
-            System.out.println("╠══════════════════════════════════════════════════════════════╣");
-            System.out.println("║  Não há produtos disponíveis para comprar.                  ║");
-            System.out.println("║  Adicione produtos ao estoque primeiro!                     ║");
-            System.out.println("╚══════════════════════════════════════════════════════════════╝");
+            System.out.println("+--------------------------------------------------------------+");
+            System.out.println("|                    ESTOQUE VAZIO                             |");
+            System.out.println("+--------------------------------------------------------------+");
+            System.out.println("|  Não há produtos disponíveis para comprar.                   |");
+            System.out.println("|  Adicione produtos ao estoque primeiro!                      |");
+            System.out.println("+--------------------------------------------------------------+");
             return;
         }
-        System.out.println("╔══════════════════════════════════════════════════════════════╗");
-        System.out.println("║                    🛒 ADICIONAR AO CARRINHO                   ║");
-        System.out.println("╠══════════════════════════════════════════════════════════════╣");
-        System.out.println("║  Produtos disponíveis:                                       ║");
+        System.out.println("+--------------------------------------------------------------+");
+        System.out.println("|                    ADICIONAR AO CARRINHO                     |");
+        System.out.println("+--------------------------------------------------------------+");
+        System.out.println("    Produtos disponíveis:");
+        int produtosDisponiveis = 0;
         for (int i = 0; i < estoqueProdutos.size(); i++) {
             Produto p = estoqueProdutos.get(i);
-            String produtoInfo = String.format("║  %d ➤ %s (Qtd: %d, Preço: R$ %.2f)", 
-                i + 1, p.getNome(), p.getQuantidade(), p.getPreco());
-            System.out.println(produtoInfo);
+            if (p.getQuantidade() > 0) {
+                produtosDisponiveis++;
+                String produtoInfo = String.format("   %d - %s (Qtd: %d, Preço: R$ %.2f)",
+                        produtosDisponiveis, p.getNome(), p.getQuantidade(), p.getPreco());
+                System.out.println(produtoInfo);
+            }
         }
-        System.out.println("╚══════════════════════════════════════════════════════════════╝");
+        if (produtosDisponiveis == 0) {
+            System.out.println("   Nenhum produto disponível para compra no momento.");
+            System.out.println("+--------------------------------------------------------------+");
+            return;
+        }
+        System.out.println("+--------------------------------------------------------------+");
         System.out.print("  Escolha o produto (número): ");
         int escolhaProduto = input.nextInt();
         input.nextLine();
-        if (escolhaProduto < 1 || escolhaProduto > estoqueProdutos.size()) {
-            System.out.println("╔══════════════════════════════════════════════════════════════╗");
-            System.out.println("║                    ❌ OPÇÃO INVÁLIDA                         ║");
-            System.out.println("╠══════════════════════════════════════════════════════════════╣");
-            System.out.println("║  Por favor, escolha um número entre 1 e " + estoqueProdutos.size() + ".                    ║");
-            System.out.println("╚══════════════════════════════════════════════════════════════╝");
+        if (escolhaProduto < 1 || escolhaProduto > produtosDisponiveis) {
+            System.out.println("+--------------------------------------------------------------+");
+            System.out.println("|                    OPÇÃO INVÁLIDA                            |");
+            System.out.println("+--------------------------------------------------------------+");
+            System.out.println("   Por favor, escolha um número entre 1 e " + produtosDisponiveis);
+            System.out.println("+--------------------------------------------------------------+");
             return;
         }
-        Produto selecionado = estoqueProdutos.get(escolhaProduto - 1);
+
+        Produto selecionado = null;
+        int contador = 0;
+        for (int i = 0; i < estoqueProdutos.size(); i++) {
+            Produto p = estoqueProdutos.get(i);
+            if (p.getQuantidade() > 0) {
+                contador++;
+                if (contador == escolhaProduto) {
+                    selecionado = p;
+                    break;
+                }
+            }
+        }
         System.out.print("  Digite a quantidade que deseja comprar: ");
         int qtd = input.nextInt();
         input.nextLine();
         if (qtd <= 0 || qtd > selecionado.getQuantidade()) {
-            System.out.println("╔══════════════════════════════════════════════════════════════╗");
-            System.out.println("║                    ❌ QUANTIDADE INVÁLIDA                    ║");
-            System.out.println("╠══════════════════════════════════════════════════════════════╣");
-            System.out.println("║  Quantidade disponível: " + selecionado.getQuantidade() + " unidades.                        ║");
-            System.out.println("╚══════════════════════════════════════════════════════════════╝");
+            System.out.println("+--------------------------------------------------------------+");
+            System.out.println("|                    QUANTIDADE INVÁLIDA                       |");
+            System.out.println("+--------------------------------------------------------------+");
+            System.out.println("   Quantidade disponível: " + selecionado.getQuantidade());
+            System.out.println("+--------------------------------------------------------------+");
             return;
         }
         carrinho.adicionarProduto(selecionado, qtd);
         selecionado.setQuantidade(selecionado.getQuantidade() - qtd);
         Produto.removerProdutos(qtd);
-        System.out.println("╔══════════════════════════════════════════════════════════════╗");
-        System.out.println("║                    ✅ PRODUTO ADICIONADO                      ║");
-        System.out.println("╠══════════════════════════════════════════════════════════════╣");
-        System.out.println("║  " + qtd + "x " + selecionado.getNome() + " adicionado ao carrinho!                    ║");
-        System.out.println("╚══════════════════════════════════════════════════════════════╝");
+        System.out.println("+--------------------------------------------------------------+");
+        System.out.println("|                    PRODUTO ADICIONADO                        |");
+        System.out.println("+--------------------------------------------------------------+");
+        System.out.println("   " + qtd + "x " + selecionado.getNome() + " adicionado ao carrinho!");
+        System.out.println("+--------------------------------------------------------------+");
     }
 
     public void removerDoCarrinho(CarrinhoCompras carrinho) {
         if (carrinho.estaVazio()) {
-            System.out.println("╔══════════════════════════════════════════════════════════════╗");
-            System.out.println("║                    🛒 CARRINHO VAZIO                        ║");
-            System.out.println("╠══════════════════════════════════════════════════════════════╣");
-            System.out.println("║  Não há produtos no carrinho para remover.                  ║");
-            System.out.println("╚══════════════════════════════════════════════════════════════╝");
+            System.out.println("+--------------------------------------------------------------+");
+            System.out.println("|                    CARRINHO VAZIO                            |");
+            System.out.println("+--------------------------------------------------------------+");
+            System.out.println("|  Não há produtos no carrinho para remover.                   |");
+            System.out.println("+--------------------------------------------------------------+");
             return;
         }
-        System.out.println("╔══════════════════════════════════════════════════════════════╗");
-        System.out.println("║                    🗑️  REMOVER DO CARRINHO                     ║");
-        System.out.println("╠══════════════════════════════════════════════════════════════╣");
-        System.out.println("║  Produtos no carrinho:                                       ║");
+        System.out.println("+--------------------------------------------------------------+");
+        System.out.println("|                    REMOVER DO CARRINHO                       |");
+        System.out.println("+--------------------------------------------------------------+");
+        System.out.println("   Produtos no carrinho:");
         for (int i = 0; i < carrinho.getTamanho(); i++) {
-            String produtoInfo = String.format("║  %d ➤ %s (Qtd: %d)", 
-                i + 1, carrinho.getProduto(i).getNome(), carrinho.getQuantidade(i));
+            String produtoInfo = String.format("   %d - %s (Qtd: %d)",
+                    i + 1, carrinho.getProduto(i).getNome(), carrinho.getQuantidade(i));
             System.out.println(produtoInfo);
         }
-        System.out.println("╚══════════════════════════════════════════════════════════════╝");
+        System.out.println("+--------------------------------------------------------------+");
         System.out.print("  Escolha o produto para remover: ");
         int escolhaRemover = input.nextInt();
         input.nextLine();
         if (escolhaRemover < 1 || escolhaRemover > carrinho.getTamanho()) {
-            System.out.println("╔══════════════════════════════════════════════════════════════╗");
-            System.out.println("║                    ❌ OPÇÃO INVÁLIDA                         ║");
-            System.out.println("╠══════════════════════════════════════════════════════════════╣");
-            System.out.println("║  Por favor, escolha um número entre 1 e " + carrinho.getTamanho() + ".                    ║");
-            System.out.println("╚══════════════════════════════════════════════════════════════╝");
+            System.out.println("+--------------------------------------------------------------+");
+            System.out.println("|                    OPÇÃO INVÁLIDA                            |");
+            System.out.println("+--------------------------------------------------------------+");
+            System.out.println("   Por favor, escolha um número entre 1 e " + carrinho.getTamanho());
+            System.out.println("+--------------------------------------------------------------+");
             return;
         }
         int indexRemover = escolhaRemover - 1;
@@ -131,55 +151,48 @@ public class InterfaceCompra {
         int qtdRemover = input.nextInt();
         input.nextLine();
         if (qtdRemover <= 0 || qtdRemover > qtdCarrinho) {
-            System.out.println("╔══════════════════════════════════════════════════════════════╗");
-            System.out.println("║                    ❌ QUANTIDADE INVÁLIDA                    ║");
-            System.out.println("╠══════════════════════════════════════════════════════════════╣");
-            System.out.println("║  Por favor, escolha uma quantidade entre 1 e " + qtdCarrinho + ".                    ║");
-            System.out.println("╚══════════════════════════════════════════════════════════════╝");
+            System.out.println("+--------------------------------------------------------------+");
+            System.out.println("|                    QUANTIDADE INVÁLIDA                       |");
+            System.out.println("+--------------------------------------------------------------+");
+            System.out.println("   Por favor, escolha uma quantidade entre 1 e " + qtdCarrinho);
+            System.out.println("+--------------------------------------------------------------+");
             return;
         }
         prodRemover.setQuantidade(prodRemover.getQuantidade() + qtdRemover);
         Produto.adicionarProdutos(qtdRemover);
         carrinho.removerProduto(indexRemover, qtdRemover);
-        System.out.println("╔══════════════════════════════════════════════════════════════╗");
-        System.out.println("║                    ✅ PRODUTO REMOVIDO                        ║");
-        System.out.println("╠══════════════════════════════════════════════════════════════╣");
-        System.out.println("║  " + qtdRemover + "x " + prodRemover.getNome() + " removido do carrinho!                    ║");
-        System.out.println("╚══════════════════════════════════════════════════════════════╝");
-    }
-
-    // Função auxiliar para preencher espaços (compatível com Java 8)
-    private String preencherEspacos(int n) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < n; i++) sb.append(' ');
-        return sb.toString();
+        System.out.println("+--------------------------------------------------------------+");
+        System.out.println("|                    PRODUTO REMOVIDO                          |");
+        System.out.println("+--------------------------------------------------------------+");
+        System.out.println("   " + qtdRemover + "x " + prodRemover.getNome() + " removido do carrinho!");
+        System.out.println("+--------------------------------------------------------------+");
     }
 
     public void mostrarCarrinho(CarrinhoCompras carrinho) {
         if (carrinho.estaVazio()) {
-            System.out.println("╔══════════════════════════════════════════════════════════════╗");
-            System.out.println("║                    🛒 CARRINHO VAZIO                        ║");
-            System.out.println("╠══════════════════════════════════════════════════════════════╣");
-            System.out.println("║  Seu carrinho de compras está vazio.                        ║");
-            System.out.println("║  Adicione alguns produtos para começar!                     ║");
-            System.out.println("╚══════════════════════════════════════════════════════════════╝");
+            System.out.println("+--------------------------------------------------------------+");
+            System.out.println("|                    CARRINHO VAZIO                            |");
+            System.out.println("+--------------------------------------------------------------+");
+            System.out.println("|  Seu carrinho de compras está vazio.                         |");
+            System.out.println("|  Adicione alguns produtos para começar!                      |");
+            System.out.println("+--------------------------------------------------------------+");
         } else {
-            System.out.println("╔══════════════════════════════════════════════════════════════╗");
-            System.out.println("║                    🛒 SEU CARRINHO                           ║");
-            System.out.println("╠══════════════════════════════════════════════════════════════╣");
-            System.out.println("║  Produtos no carrinho:                                       ║");
+            System.out.println("+--------------------------------------------------------------+");
+            System.out.println("|                    SEU CARRINHO                              |");
+            System.out.println("+--------------------------------------------------------------+");
+            System.out.println("   Produtos no carrinho:");
             for (int i = 0; i < carrinho.getTamanho(); i++) {
                 Produto p = carrinho.getProduto(i);
                 int qtd = carrinho.getQuantidade(i);
                 double valor = p.getPreco() * qtd;
-                String itemInfo = String.format("║  %d ➤ %s - Qtd: %d - R$ %.2f", 
-                    i + 1, p.getNome(), qtd, valor);
+                String itemInfo = String.format("   %d - %s - Qtd: %d - R$ %.2f",
+                        i + 1, p.getNome(), qtd, valor);
                 System.out.println(itemInfo);
             }
-            System.out.println("╠══════════════════════════════════════════════════════════════╣");
-            String totalInfo = String.format("║  Total do carrinho: R$ %.2f", carrinho.getTotalCarrinho());
-            System.out.println(totalInfo + preencherEspacos(58 - totalInfo.length()) + "║");
-            System.out.println("╚══════════════════════════════════════════════════════════════╝");
+            System.out.println("+--------------------------------------------------------------+");
+            String totalInfo = String.format("   Total do carrinho: R$ %.2f", carrinho.getTotalCarrinho());
+            System.out.println(totalInfo);
+            System.out.println("+--------------------------------------------------------------+");
         }
     }
 
@@ -202,6 +215,12 @@ public class InterfaceCompra {
         System.out.print("> ");
         int metodo = input.nextInt();
         input.nextLine();
+        while (metodo != 1 && metodo != 2) {
+            System.out.println("\nOpção inválida, escolha 1 para Dinheiro ou 2 para Cartão.");
+            System.out.print("> ");
+            metodo = input.nextInt();
+            input.nextLine();
+        }
         if (metodo == 1) {
             System.out.print("Digite o valor pago: R$ ");
             double pago = input.nextDouble();
@@ -220,4 +239,4 @@ public class InterfaceCompra {
         System.out.println("Compra finalizada. Obrigado!");
         carrinho.limparCarrinho();
     }
-} 
+}

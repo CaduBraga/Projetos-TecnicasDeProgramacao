@@ -1,9 +1,9 @@
 package br.com.appFrutaria.view;
 
-import java.util.List;
-import java.util.Scanner;
 import br.com.appFrutaria.model.*;
 import br.com.appFrutaria.model.verduras.Verdura;
+import java.util.List;
+import java.util.Scanner;
 
 public class Relatorio {
     Scanner input;
@@ -21,7 +21,9 @@ public class Relatorio {
     }
 
     public void relatorioFrutaria(List<Produto> estoqueProdutos) {
-        System.out.println("===== RELATÓRIO DA FRUTARIA =====");
+        System.out.println("+--------------------------------------------------------------+");
+        System.out.println("|                  RELATÓRIO DA FRUTARIA                       |");
+        System.out.println("+--------------------------------------------------------------+");
         System.out.println("Total de produtos: " + Produto.getTotalProdutos());
         System.out.println("Total de frutas: " + Fruta.getTotalFrutas());
         System.out.println("Total de verduras: " + Verdura.getTotalVerduras());
@@ -43,7 +45,7 @@ public class Relatorio {
                 }
             }
         }
-        System.out.println("\nProdutos ordenados por quantidade (maior para menor):");
+        System.out.println("\nProdutos ordenados por quantidade (ordem decrescente):");
         for (Produto p : ordenados) {
             System.out.println(p.getNome() + " - Quantidade: " + p.getQuantidade());
         }
@@ -105,4 +107,4 @@ public class Relatorio {
         if (totalCondimento > 0)
             System.out.println("CONDIMENTO: " + totalCondimento);
     }
-} 
+}
