@@ -55,10 +55,9 @@ public class Produto {
     }
 
     public static void removerProdutos(int quantidade) {
-        if (totalProdutos - quantidade < 0) {
+        totalProdutos -= quantidade;
+        if (totalProdutos < 0) {
             totalProdutos = 0;
-        } else {
-            totalProdutos -= quantidade;
         }
     }
 }

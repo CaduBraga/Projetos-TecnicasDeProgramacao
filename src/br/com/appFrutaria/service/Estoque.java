@@ -2,62 +2,61 @@ package br.com.appFrutaria.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import br.com.appFrutaria.model.Fruta;
-import br.com.appFrutaria.view.Interface;
+import br.com.appFrutaria.model.Produto;
+import br.com.appFrutaria.view.*;
 
 public class Estoque {
-    List<Fruta> estoqueFruta;
+    List<Produto> estoqueProdutos;
     Interface tela;
-    /*
-     * eu queria usar interface ao invés de tela,
-     * mas interface é uma palavra protegida pelo Java
-     */
 
     public Estoque() {
-        estoqueFruta = new ArrayList<>();
+        estoqueProdutos = new ArrayList<>();
         tela = new Interface();
     }
 
-    public Estoque(List<Fruta> estoqueFruta) {
-        this.estoqueFruta = estoqueFruta;
+    public Estoque(List<Produto> estoqueProdutos) {
+        this.estoqueProdutos = estoqueProdutos;
     }
 
-    public void setFruta(List<Fruta> estoqueFruta) {
-        this.estoqueFruta = estoqueFruta;
+    public void setProdutos(List<Produto> estoqueProdutos) {
+        this.estoqueProdutos = estoqueProdutos;
     }
 
-    public List<Fruta> getEstoqueFruta() {
-        return estoqueFruta;
+    public List<Produto> getEstoqueProdutos() {
+        return estoqueProdutos;
     }
 
     public void gerenciarEstoque() {
         int escolhaInicial = 0;
-        while (escolhaInicial != 5) {
-            escolhaInicial = tela.menuPrincipal();
+        while (escolhaInicial != 7) {
+            escolhaInicial = Menus.menuPrincipal();
             switch (escolhaInicial) {
-
                 case 1:
-                    Fruta fruta = tela.cadastrar();
-                    estoqueFruta.add(fruta);
+                    Produto produto = tela.cadastrar();
+                    estoqueProdutos.add(produto);
                     break;
-
                 case 2:
-                    tela.detalhar(estoqueFruta);
+                    tela.detalhar(estoqueProdutos);
                     break;
-
                 case 3:
-                    tela.remover(estoqueFruta);
+                    tela.remover(estoqueProdutos);
                     break;
-
                 case 4:
-                    tela.editar(estoqueFruta);
+                    Editar.editar(estoqueProdutos);
                     break;
-
                 case 5:
+                    Relatorio relatorio = new Relatorio();
+                    relatorio.relatorioFrutaria(estoqueProdutos);
+                    break;
+                case 6:
+                    CarrinhoCompras carrinho = new CarrinhoCompras();
+                    carrinho.gerenciarCarrinho(estoqueProdutos);
+                    break;
+                case 7:
                     tela.encerrar();
                     break;
                 default:
-                    System.out.println("Opção inválida. Escolha um número entre 1 e 5.");
+                    System.out.println("Opção inválida. Escolha um número entre 1 e 7.");
             }
         }
     }
