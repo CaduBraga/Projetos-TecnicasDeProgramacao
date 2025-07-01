@@ -211,7 +211,7 @@ public class Interface {
         System.out.println("Cursos disponíveis:");
         for (int i = 0; i < estoque.size(); i++) {
             Curso c = estoque.get(i);
-            System.out.println((i+1) + " - " + c.getNome() + " (R$ " + c.getPreco() + ", Vagas: " + c.getVagas() + ")");
+            System.out.println((i + 1) + " - " + c.getNome() + " (R$ " + c.getPreco() + ", Vagas: " + c.getVagas() + ")");
         }
         System.out.print("Escolha o curso: ");
         int idx = input.nextInt() - 1;
@@ -230,4 +230,5 @@ public class Interface {
         }
         curso.setVagas(curso.getVagas() - qtd);
         carrinho.adicionarCurso(curso, qtd);
+    }
 }

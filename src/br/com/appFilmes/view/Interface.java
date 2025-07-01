@@ -66,7 +66,11 @@ public class Interface {
 
         Filme.adicionarFilmes(quantidade);
 
-        Filme filme = new Filme(titulo, genero, duracao, anoLancamento, diretor, quantidade);
+        System.out.print("Digite o preço do filme: ");
+        double preco = input.nextDouble();
+        input.nextLine();
+
+        Filme filme = new Filme(titulo, genero, duracao, anoLancamento, diretor, quantidade, preco);
 
         System.out.println("Filme '" + titulo + "' cadastrado com sucesso!");
         System.out.println("Total de filmes na locadora: " + Filme.getTotalFilmes());
