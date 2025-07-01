@@ -3,13 +3,14 @@ package br.com.appSuplementos.service;
 import java.util.ArrayList;
 import java.util.List;
 import br.com.appSuplementos.model.Suplemento;
-import br.com.appSuplementos.view.Interface;
+import br.com.appSuplementos.view.*;
 
 public class CarrinhoCompras {
     List<Suplemento> carrinhoSuplementos;
     List<Integer> carrinhoQuantidades;
     double totalCarrinho;
     Interface tela;
+    InterfaceCompra telaCarrinho;
 
     public CarrinhoCompras() {
         carrinhoSuplementos = new ArrayList<>();
@@ -94,16 +95,16 @@ public class CarrinhoCompras {
             escolhaCarrinho = tela.menuCarrinho();
             switch (escolhaCarrinho) {
                 case 1:
-                    tela.adicionarAoCarrinho(estoqueSuplementos, this);
+                    telaCarrinho.adicionarAoCarrinho(estoqueSuplementos, this);
                     break;
                 case 2:
-                    tela.removerDoCarrinho(this);
+                    telaCarrinho.removerDoCarrinho(this);
                     break;
                 case 3:
-                    tela.mostrarCarrinho(this);
+                    telaCarrinho.mostrarCarrinho(this);
                     break;
                 case 4:
-                    tela.finalizarCompra(this);
+                    telaCarrinho.finalizarCompra(this);
                     escolhaCarrinho = 5;
                     break;
                 case 5:
