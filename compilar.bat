@@ -13,7 +13,7 @@ echo ========================================
 echo.
 
 echo Compilando App Biblioteca...
-javac -cp src src/br/com/appBiblioteca/AppBiblioteca.java src/br/com/appBiblioteca/model/Livro.java src/br/com/appBiblioteca/service/Estoque.java src/br/com/appBiblioteca/view/Interface.java src/br/com/appBiblioteca/view/Editar.java
+javac -cp src src/br/com/appBiblioteca/AppBiblioteca.java src/br/com/appBiblioteca/model/Livro.java src/br/com/appBiblioteca/service/Estoque.java src/br/com/appBiblioteca/view/Interface.java src/br/com/appBiblioteca/view/Editar.java src/br/com/appBiblioteca/view/Relatorio.java
 if %errorlevel% equ 0 (
     echo [OK] App Biblioteca compilado com sucesso!
 ) else (
@@ -31,7 +31,7 @@ if %errorlevel% equ 0 (
 
 echo.
 echo Compilando App Filmes...
-javac -cp src src/br/com/appFilmes/AppFilmes.java src/br/com/appFilmes/model/Filme.java src/br/com/appFilmes/service/Estoque.java src/br/com/appFilmes/view/Interface.java src/br/com/appFilmes/view/Editar.java
+javac -cp src src/br/com/appFilmes/AppFilmes.java src/br/com/appFilmes/model/Filme.java src/br/com/appFilmes/service/Estoque.java src/br/com/appFilmes/view/Interface.java src/br/com/appFilmes/view/Editar.java src/br/com/appFilmes/view/Relatorio.java
 if %errorlevel% equ 0 (
     echo [OK] App Filmes compilado com sucesso!
 ) else (
@@ -40,7 +40,7 @@ if %errorlevel% equ 0 (
 
 echo.
 echo Compilando App Cursos...
-javac -cp src src/br/com/appCursos/AppCursos.java src/br/com/appCursos/model/Curso.java src/br/com/appCursos/service/Estoque.java src/br/com/appCursos/view/Interface.java src/br/com/appCursos/view/Editar.java
+javac -cp src src/br/com/appCursos/AppCursos.java src/br/com/appCursos/model/Curso.java src/br/com/appCursos/service/Estoque.java src/br/com/appCursos/view/Interface.java src/br/com/appCursos/view/Editar.java src/br/com/appCursos/view/Relatorio.java
 if %errorlevel% equ 0 (
     echo [OK] App Cursos compilado com sucesso!
 ) else (
@@ -49,7 +49,7 @@ if %errorlevel% equ 0 (
 
 echo.
 echo Compilando App Suplementos...
-javac -cp src src/br/com/appSuplementos/AppSuplementos.java src/br/com/appSuplementos/model/Suplemento.java src/br/com/appSuplementos/service/Estoque.java src/br/com/appSuplementos/view/Interface.java src/br/com/appSuplementos/view/Editar.java
+javac -cp src src/br/com/appSuplementos/AppSuplementos.java src/br/com/appSuplementos/model/Suplemento.java src/br/com/appSuplementos/service/Estoque.java src/br/com/appSuplementos/view/Interface.java src/br/com/appSuplementos/view/Editar.java src/br/com/appSuplementos/view/Relatorio.java
 if %errorlevel% equ 0 (
     echo [OK] App Suplementos compilado com sucesso!
 ) else (
