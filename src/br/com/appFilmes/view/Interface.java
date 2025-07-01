@@ -81,7 +81,8 @@ public class Interface {
         } else {
             System.out.println("Filmes disponíveis:");
             for (int i = 0; i < estoqueFilme.size(); i++) {
-                System.out.println((i + 1) + " - " + estoqueFilme.get(i).getTitulo() + " (Quantidade: " + estoqueFilme.get(i).getQuantidade() + ")");
+                System.out.println((i + 1) + " - " + estoqueFilme.get(i).getTitulo() + " (Quantidade: "
+                        + estoqueFilme.get(i).getQuantidade() + ")");
             }
 
             System.out.println("Digite o número do filme para ver os detalhes:");
@@ -113,7 +114,8 @@ public class Interface {
         }
         System.out.println("Filmes disponíveis:");
         for (int i = 0; i < estoqueFilme.size(); i++) {
-            System.out.println((i + 1) + " - " + estoqueFilme.get(i).getTitulo() + " (Quantidade: " + estoqueFilme.get(i).getQuantidade() + ")");
+            System.out.println((i + 1) + " - " + estoqueFilme.get(i).getTitulo() + " (Quantidade: "
+                    + estoqueFilme.get(i).getQuantidade() + ")");
         }
         System.out.println("Digite o número do filme que deseja remover: ");
         System.out.print("> ");
@@ -123,7 +125,8 @@ public class Interface {
 
         if (escolha > 0 && escolha <= estoqueFilme.size()) {
             Filme selecionado = estoqueFilme.get(escolha - 1);
-            System.out.println("Estão disponíveis " + selecionado.getQuantidade() + " unidades do filme '" + selecionado.getTitulo() + "'. Quantas você deseja remover?");
+            System.out.println("Estão disponíveis " + selecionado.getQuantidade() + " unidades do filme '"
+                    + selecionado.getTitulo() + "'. Quantas você deseja remover?");
             System.out.print("> ");
             int quantidadeRemovida = input.nextInt();
             input.nextLine();
@@ -132,7 +135,8 @@ public class Interface {
                 selecionado.setQuantidade(selecionado.getQuantidade() - quantidadeRemovida);
                 Filme.removerFilmes(quantidadeRemovida);
 
-                System.out.println("Foram removidas " + quantidadeRemovida + " unidades do filme '" + selecionado.getTitulo() + "'.");
+                System.out.println("Foram removidas " + quantidadeRemovida + " unidades do filme '"
+                        + selecionado.getTitulo() + "'.");
                 System.out.println("Quantidade restante deste filme: " + selecionado.getQuantidade());
                 System.out.println("Total de filmes na locadora: " + Filme.getTotalFilmes());
 
@@ -207,4 +211,4 @@ public class Interface {
         System.out.println("Obrigado por usar o App Filmes!");
         System.out.println("Programa encerrado.");
     }
-} 
+}

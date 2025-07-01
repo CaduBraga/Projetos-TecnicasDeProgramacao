@@ -1,7 +1,5 @@
 package br.com.appBiblioteca.model;
 
-import java.util.Date;
-
 public class Livro {
     private String nome;
     private String autor;
@@ -9,6 +7,7 @@ public class Livro {
     private String editora;
     private int paginas;
     private int quantidade;
+    private double preco;
     private static int totalLivros = 0;
 
     public Livro() {
@@ -18,15 +17,17 @@ public class Livro {
         this.editora = "";
         this.paginas = 0;
         this.quantidade = 0;
+        this.preco = 0.0;
     }
 
-    public Livro(String nome, String autor, String genero, String editora, int paginas, int quantidade) {
+    public Livro(String nome, String autor, String genero, String editora, int paginas, int quantidade, double preco) {
         this.nome = nome;
         this.autor = autor;
         this.genero = genero;
         this.editora = editora;
         this.paginas = paginas;
         this.quantidade = quantidade;
+        this.preco = preco;
     }
 
     public String getNome() {
@@ -75,6 +76,14 @@ public class Livro {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
     }
 
     public static int getTotalLivros() {

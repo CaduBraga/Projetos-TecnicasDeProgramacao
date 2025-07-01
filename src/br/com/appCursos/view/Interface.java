@@ -45,28 +45,23 @@ public class Interface {
     public Curso cadastrar() {
         System.out.print("Digite o nome do curso: ");
         String nome = input.nextLine();
-
         System.out.print("Digite a duração do curso (em horas): ");
         int duracaoHoras = input.nextInt();
         input.nextLine();
-
         System.out.print("Digite o nome do coordenador: ");
         String coordenador = input.nextLine();
-
         System.out.print("Digite o nível do curso: ");
         String nivel = input.nextLine();
-
         System.out.print("Digite o número de vagas: ");
         int vagas = input.nextInt();
         input.nextLine();
-
+        System.out.print("Digite o preço do curso: ");
+        double preco = input.nextDouble();
+        input.nextLine();
         Curso.adicionarCursos(1);
-
-        Curso curso = new Curso(nome, duracaoHoras, coordenador, nivel, vagas);
-
+        Curso curso = new Curso(nome, duracaoHoras, coordenador, nivel, vagas, preco);
         System.out.println("Curso '" + nome + "' cadastrado com sucesso!");
         System.out.println("Total de cursos na instituição: " + Curso.getTotalCursos());
-
         return curso;
     }
 
@@ -77,7 +72,8 @@ public class Interface {
         } else {
             System.out.println("Cursos disponíveis:");
             for (int i = 0; i < estoqueCurso.size(); i++) {
-                System.out.println((i + 1) + " - " + estoqueCurso.get(i).getNome() + " (Vagas: " + estoqueCurso.get(i).getVagas() + ")");
+                System.out.println((i + 1) + " - " + estoqueCurso.get(i).getNome() + " (Vagas: "
+                        + estoqueCurso.get(i).getVagas() + ")");
             }
 
             System.out.println("Digite o número do curso para ver os detalhes:");
@@ -108,7 +104,8 @@ public class Interface {
         }
         System.out.println("Cursos disponíveis:");
         for (int i = 0; i < estoqueCurso.size(); i++) {
-            System.out.println((i + 1) + " - " + estoqueCurso.get(i).getNome() + " (Vagas: " + estoqueCurso.get(i).getVagas() + ")");
+            System.out.println((i + 1) + " - " + estoqueCurso.get(i).getNome() + " (Vagas: "
+                    + estoqueCurso.get(i).getVagas() + ")");
         }
         System.out.println("Digite o número do curso que deseja remover: ");
         System.out.print("> ");
@@ -118,7 +115,8 @@ public class Interface {
 
         if (escolha > 0 && escolha <= estoqueCurso.size()) {
             Curso selecionado = estoqueCurso.get(escolha - 1);
-            System.out.println("Tem certeza que deseja remover o curso '" + selecionado.getNome() + "'? (1 - Sim / 0 - Não)");
+            System.out.println(
+                    "Tem certeza que deseja remover o curso '" + selecionado.getNome() + "'? (1 - Sim / 0 - Não)");
             System.out.print("> ");
             int confirmacao = input.nextInt();
             input.nextLine();
@@ -191,4 +189,45 @@ public class Interface {
         System.out.println("Obrigado por usar o App Cursos!");
         System.out.println("Programa encerrado.");
     }
-} 
+
+    public int menuCarrinho() {
+        System.out.println("=== Carrinho de Compras ===");
+        System.out.println("1 - Adicionar curso ao carrinho");
+        System.out.println("2 - Remover curso do carrinho");
+        System.out.println("3 - Ver carrinho");
+        System.out.println("4 - Finalizar compra");
+        System.out.println("5 - Voltar");
+        System.out.print("> ");
+        int escolha = input.nextInt();
+        input.nextLine();
+        return escolha;
+    }
+
+    public void adicionarAoCarrinho(List<Curso> estoque, br.com.appCursos.service.CarrinhoCompras carrinho) {
+        if (estoque.isEmpty()) {
+            System.out.println("Estoque vazio.");
+            return;
+        }
+        System.out.println("Cursos disponíveis:");
+        for (int i = 0; i < estoque.size(); i++) {
+            Curso c = estoque.get(i);
+            System.out.println((i+1) + " - " + c.getNome() + " (R$ " + c.getPreco() + ", Vagas: " + c.getVagas() + ")");
+        }
+        System.out.print("Escolha o curso: ");
+        int idx = input.nextInt() - 1;
+        input.nextLine();
+        if (idx < 0 || idx >= estoque.size()) {
+            System.out.println("Opção inválida.");
+            return;
+        }
+        Curso curso = estoque.get(idx);
+        System.out.print("Quantidade: ");
+        int qtd = input.nextInt();
+        input.nextLine();
+        if (qtd <= 0 || qtd > curso.getVagas()) {
+            System.out.println("Quantidade inválida.");
+            return;
+        }
+        curso.setVagas(curso.getVagas() - qtd);
+        carrinho.adicionarCurso(curso, qtd);
+}

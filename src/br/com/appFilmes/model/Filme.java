@@ -1,7 +1,5 @@
 package br.com.appFilmes.model;
 
-import java.util.Date;
-
 public class Filme {
     private String titulo;
     private String genero;
@@ -9,6 +7,7 @@ public class Filme {
     private int anoLancamento;
     private String diretor;
     private int quantidade;
+    private double preco;
     private static int totalFilmes = 0;
 
     public Filme() {
@@ -18,15 +17,18 @@ public class Filme {
         this.anoLancamento = 0;
         this.diretor = "";
         this.quantidade = 0;
+        this.preco = 0.0;
     }
 
-    public Filme(String titulo, String genero, int duracao, int anoLancamento, String diretor, int quantidade) {
+    public Filme(String titulo, String genero, int duracao, int anoLancamento, String diretor, int quantidade,
+            double preco) {
         this.titulo = titulo;
         this.genero = genero;
         this.duracao = duracao;
         this.anoLancamento = anoLancamento;
         this.diretor = diretor;
         this.quantidade = quantidade;
+        this.preco = preco;
     }
 
     public String getTitulo() {
@@ -77,6 +79,14 @@ public class Filme {
         this.quantidade = quantidade;
     }
 
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
     public static int getTotalFilmes() {
         return totalFilmes;
     }
@@ -96,4 +106,4 @@ public class Filme {
     public static void removerFilmeEspecifico(int quantidade) {
         quantidade -= quantidade;
     }
-} 
+}

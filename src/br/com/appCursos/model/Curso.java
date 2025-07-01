@@ -1,13 +1,12 @@
 package br.com.appCursos.model;
 
-import java.util.Date;
-
 public class Curso {
     private String nome;
     private int duracaoHoras;
     private String coordenador;
     private String nivel;
     private int vagas;
+    private double preco;
     private static int totalCursos = 0;
 
     public Curso() {
@@ -16,14 +15,16 @@ public class Curso {
         this.coordenador = "";
         this.nivel = "";
         this.vagas = 0;
+        this.preco = 0.0;
     }
 
-    public Curso(String nome, int duracaoHoras, String coordenador, String nivel, int vagas) {
+    public Curso(String nome, int duracaoHoras, String coordenador, String nivel, int vagas, double preco) {
         this.nome = nome;
         this.duracaoHoras = duracaoHoras;
         this.coordenador = coordenador;
         this.nivel = nivel;
         this.vagas = vagas;
+        this.preco = preco;
     }
 
     public String getNome() {
@@ -66,6 +67,14 @@ public class Curso {
         this.vagas = vagas;
     }
 
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
     public static int getTotalCursos() {
         return totalCursos;
     }
@@ -85,4 +94,4 @@ public class Curso {
     public static void removerCursoEspecifico(int quantidade) {
         quantidade -= quantidade;
     }
-} 
+}
