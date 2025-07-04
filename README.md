@@ -1,4 +1,4 @@
-# 📚 Projetos de Técnicas de Programação
+# 📚 Projetos de Técnicas de Programação para treinar CRUD com herança
 
 Este repositório reúne cinco sistemas Java independentes, cada um simulando um domínio diferente (Biblioteca, Frutaria, Filmes, Cursos e Suplementos), todos organizados em uma estrutura modular e padronizada.
 
