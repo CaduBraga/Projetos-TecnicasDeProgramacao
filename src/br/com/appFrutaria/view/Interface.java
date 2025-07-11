@@ -35,49 +35,53 @@ public class Interface {
         int quantidade = input.nextInt();
         input.nextLine();
         Produto produto;
-        if (tipo == 1) {
-            System.out.print("Digite o peso da fruta: ");
-            double peso = input.nextDouble();
-            input.nextLine();
-            produto = new Fruta(peso, 0);
-            Fruta.adicionarFrutas(quantidade);
-        } else {
-            System.out.println("Escolha o tipo da verdura:");
-            System.out.println("1 - Legume");
-            System.out.println("2 - Tubérculo");
-            System.out.println("3 - Raiz");
-            System.out.println("4 - Cereal");
-            System.out.println("5 - Oleagionsa");
-            System.out.println("6 - Condimento");
-            System.out.print("> ");
-            int tipoVerduraId = input.nextInt();
-            input.nextLine();
-            TipoVerdura tipoVerdura;
-            switch (tipoVerduraId) {
-                case 1:
-                    tipoVerdura = TipoVerdura.LEGUME;
-                    break;
-                case 2:
-                    tipoVerdura = TipoVerdura.TUBERCULO;
-                    break;
-                case 3:
-                    tipoVerdura = TipoVerdura.RAIZ;
-                    break;
-                case 4:
-                    tipoVerdura = TipoVerdura.CEREAL;
-                    break;
-                case 5:
-                    tipoVerdura = TipoVerdura.OLEAGINOSA;
-                    break;
-                case 6:
-                    tipoVerdura = TipoVerdura.CONDIMENTO;
-                    break;
-                default:
-                    System.out.println("Opção inválida, escolha um número de 1 a 6 para o tipo de verdura.");
-                    return null;
-            }
-            produto = new Verdura(tipoVerdura, 0);
-            Verdura.adicionarVerduras(quantidade);
+        switch (tipo) {
+            case 1:
+                System.out.print("Digite o peso da fruta: ");
+                double peso = input.nextDouble();
+                input.nextLine();
+                produto = new Fruta(peso, 0);
+                Fruta.adicionarFrutas(quantidade);
+                break;
+            case 2:
+                System.out.println("Escolha o tipo da verdura:");
+                System.out.println("1 - Legume");
+                System.out.println("2 - Tubérculo");
+                System.out.println("3 - Raiz");
+                System.out.println("4 - Cereal");
+                System.out.println("5 - Oleagionsa");
+                System.out.println("6 - Condimento");
+                System.out.print("> ");
+                int tipoVerduraId = input.nextInt();
+                input.nextLine();
+                TipoVerdura tipoVerdura;
+                switch (tipoVerduraId) {
+                    case 1:
+                        tipoVerdura = TipoVerdura.LEGUME;
+                        break;
+                    case 2:
+                        tipoVerdura = TipoVerdura.TUBERCULO;
+                        break;
+                    case 3:
+                        tipoVerdura = TipoVerdura.RAIZ;
+                        break;
+                    case 4:
+                        tipoVerdura = TipoVerdura.CEREAL;
+                        break;
+                    case 5:
+                        tipoVerdura = TipoVerdura.OLEAGINOSA;
+                        break;
+                    case 6:
+                        tipoVerdura = TipoVerdura.CONDIMENTO;
+                        break;
+                    default:
+                        return null;
+                    }
+                produto = new Verdura(tipoVerdura, 0);
+                Verdura.adicionarVerduras(quantidade);
+                break;
+            default:
+                return null;
         }
         produto.setNome(nome);
         produto.setPreco(preco);

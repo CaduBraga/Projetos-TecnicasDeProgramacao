@@ -32,7 +32,7 @@ public class Menus {
 
     public static int menuTipoProduto() {
         System.out.println("+--------------------------------------------------------------+");
-        System.out.println("|                    CADASTRO DE PRODUTO                      |");
+        System.out.println("|                    CADASTRO DE PRODUTO                       |");
         System.out.println("+--------------------------------------------------------------+");
         System.out.println("|  Qual tipo de produto?                                       |");
         System.out.println("|                                                              |");
@@ -43,7 +43,7 @@ public class Menus {
         int tipo = input.nextInt();
         input.nextLine();
         if (tipo != 1 && tipo != 2) {
-            System.out.println("Opção inválida, escolha o número 1 (fruta) ou 2 (verdura).");
+            System.out.println("Opção inválida, escolha o número 1 para fruta ou 2 para verdura.");
             return menuTipoProduto();
         }
         System.out.println();
